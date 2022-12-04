@@ -95,7 +95,15 @@ public ClientGui(String ip, int port) {
     
     JMenuItem mnWordChainGame = new JMenuItem("끝말잇기");
     mnGame.add(mnWordChainGame); 
-	
+    
+//    mnWordChainGame.addActionListener(new MenuActionListener());
+//	
+//    class MenuActionListener implements ActionListener {
+//    	public void actionPerformed(ActionEvent Ev) {
+//    		
+//    	}
+//    }
+    
 	setTitle("To Talk");
     setSize(410, 750);
     setLocation(200, 50);

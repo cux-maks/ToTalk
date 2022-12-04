@@ -1,4 +1,5 @@
 package main;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -6,12 +7,23 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import javax.swing.*;
+
+import chatting.ChatServer;
+import chatting.ClientGui;
+
+import main.main_Data;
 
 @SuppressWarnings("serial")
 public class LoginScreen extends JFrame {
 
+	static String myId = new String("");
+	static String myPwd = new String("");
+	static String IP = new String("");
+	
 	public LoginScreen() {
 		
 		setTitle("ToTalk 로그인");
@@ -44,7 +56,7 @@ public class LoginScreen extends JFrame {
 		
 		JPanel idPanel2 = 
 				new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JTextField jtf1 = new JTextField(10);
+		JTextField jtf1 = new JTextField(15);
 			
 		idPanel2.add(jtf1);
 		
@@ -57,11 +69,24 @@ public class LoginScreen extends JFrame {
 		
 		JPanel pwdPanel2 = 
 				new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JPasswordField jtf2 = new JPasswordField(10);
+		JPasswordField jtf2 = new JPasswordField(15);
+		
+		
+		JPanel IPPanel1 = 
+				new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		JLabel IP1 = new JLabel("접속 IP : ", JLabel.CENTER);
+			
+		IPPanel1.add(IP1);
+		JPanel IPPanel2 = 
+				new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JTextField IP2 = new JTextField(15);
+		
+		IPPanel2.add(IP2);
 		
 		pwdPanel.add(jlb2); pwdPanel2.add(jtf2);
 		
 		jp1.add(pwdPanel); jp1.add(pwdPanel2);
+		jp1.add(IPPanel1); jp1.add(IPPanel2);
 		
 		
 		JPanel loginPanel = 
@@ -86,7 +111,7 @@ public class LoginScreen extends JFrame {
 		add(title, BorderLayout.NORTH);
 		add(jp2, BorderLayout.CENTER);
 		
-		setBounds(200, 200, 300, 250);
+		setBounds(200, 200, 350, 300);
 		
 		setResizable(false);  // 화면 크기 고정하는 작업
 		
@@ -100,11 +125,33 @@ public class LoginScreen extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String myId = jtf1.getText();
-				String myPwd = new String(jtf2.getPassword());
+				myId = jtf1.getText();
+				myPwd = new String(jtf2.getPassword());
+				IP = IP2.getText();
 				
 				JOptionPane.showMessageDialog
-					(null, "아이디 : "+myId+", 비밀번호 : "+myPwd);
+					(null, "아이디 : "+myId+", 비밀번호 : "+myPwd+", 접속 IP : "+IP);
+				
+				main_Data a = new main_Data();
+				if (a.login(myId, myPwd)) {
+				
+					if(IP == "") {
+					
+						try {
+							InetAddress ia = InetAddress.getLocalHost();
+							String ip_str = ia.toString();
+							String ip = ip_str.substring(ip_str.indexOf("/") + 1);
+							//System.out.println("test" + ip);
+							new ClientGui(ip, 5420);
+						} catch (UnknownHostException E) {
+							E.printStackTrace();
+						}
+					
+					}else {
+						new ClientGui(IP, 5420);
+					}
+				}
+				
 			}
 		});
 		
@@ -122,4 +169,9 @@ public class LoginScreen extends JFrame {
 
 		
 	}
+	
+	static public String getId() {
+		return myId;
+	}
+	
 }

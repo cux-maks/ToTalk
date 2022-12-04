@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
-
+import main.LoginScreen;
 
 public class ServerSocketThread extends Thread {
 	Socket socket;
@@ -36,13 +36,14 @@ public class ServerSocketThread extends Thread {
 			// true : autoFlush 설정
 			out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
 			
-			sendMessage("대화자 이름을 넣으세요");
-			name = in.readLine();
-			server.broadCasting("[" + name + "]님이 입장하셨습니다.");
+//			sendMessage("님이 입장하셨습니다.");
+			
+//			name = in.readLine();
+			server.broadCasting("[" + main.LoginScreen.getId() + "]님이 입장하셨습니다.");
 			
 			while(true) {
 				String str_in = in.readLine();
-				server.broadCasting("[" + name + "] " + str_in);
+				server.broadCasting("[" + main.LoginScreen.getId() + "] " + str_in);
 			}
 		} catch (IOException e) {
 			System.out.println(threadName + " 퇴장했습니다.");

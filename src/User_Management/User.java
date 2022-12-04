@@ -1,7 +1,10 @@
 package User_Management;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+//import java.time.LocalDate;
+//import java.time.format.DateTimeFormatter;
+
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class User extends UserData {
 
@@ -13,8 +16,11 @@ public class User extends UserData {
 	public boolean gender = false;
 	public double win_rate = 0;
 	
-	private String id = new String("gest");
-	private String pw = new String("1234");
+	public String id = new String("gest");
+	public String pw = new String("1234");
+	
+//	private String id = new String("gest");
+//	private String pw = new String("1234");
 	
 	protected String group = new String("independent");
 	
@@ -58,6 +64,14 @@ public class User extends UserData {
 	public int getAge() { return age; }
 	public boolean getGender() { return gender; }
 	
+	public boolean check(String _id, String _pw) {
+		if (id.equals(_id) && pw.equals(_pw)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	protected void calc_winRate() { win_rate = (double)win_times/(double)play_times; }
 	
 	public void register(String _id, String _pw) {
@@ -69,8 +83,15 @@ public class User extends UserData {
 	private void setPw(String _pw) { pw = _pw; }
 	
 	private void set_start_date() {
-		LocalDate now = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.mm.dd");
-		start_date = now.format(formatter);
+//		LocalDate now = LocalDate.now();
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+//		start_date = now.format(formatter);
+//		
+		Date date_now = new Date(System.currentTimeMillis()); // 현재시간을 가져와 Date형으로 저장한다
+		// 년월일시분초 14자리 포멧
+		SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyy.MM.dd"); 
+		System.out.println(fourteen_format.format(date_now));
+		
+		start_date = fourteen_format.format(date_now);
 	}
 }
