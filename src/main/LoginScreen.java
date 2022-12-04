@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import java.awt.Toolkit;
+
 import javax.swing.*;
 
 import chatting.ChatServer;
@@ -25,6 +27,8 @@ public class LoginScreen extends JFrame {
 	static String IP = new String("");
 	
 	public LoginScreen() {
+		
+		setIconImage(Toolkit.getDefaultToolkit().getImage(LoginScreen.class.getResource("ToTalk.png")));
 		
 		setTitle("ToTalk 로그인");
 		JPanel title = new JPanel();

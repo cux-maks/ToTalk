@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import main.main_Data;
+import java.awt.Toolkit;
 
 import javax.swing.*;
 
@@ -21,9 +22,11 @@ public class JoinScreen extends JFrame{
 	
 	public JoinScreen() {
 		
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JoinScreen.class.getResource("ToTalk.png")));
+		
 		setTitle("회원관리 화면");
 		JPanel p = new JPanel();
-
+		
 		JLabel title = new JLabel("회원가입", JLabel.CENTER);
 		title.setForeground(Color.BLACK);
 		p.setBackground(new Color(209,206,255));
