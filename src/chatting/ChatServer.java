@@ -5,17 +5,28 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
+import User_Management.User;
+//import User_Management.User;
+//import User_Management.UserData;
 
 public class ChatServer {
 	
 	ServerSocket serverSocket;
 	Socket socket;
-	List<Thread> list;		// ServerSocketThread 객체 저장
+	List<Thread> list;  // ServerSocketThread 객체 저장
+	ArrayList<User> Users = new ArrayList<User>();
+	String _Name = new String("조병하");
+	String my_id = new String("xmaaks");
+	String my_pw = new String("whqudgk");
+	User new_User = new User(_Name);
+//	new_User.register(my_id, my_pw);
 	
 	public ChatServer() {
 		list = new ArrayList<Thread>();
 		System.out.println("서버가 시작되었습니다.");
 	}
+	
 	public void giveAndTake() {
 		try {
 			serverSocket = new ServerSocket(5420);		// 소켓 접속 대기
@@ -36,6 +47,9 @@ public class ChatServer {
 	// 클라이언트가 입장 시 호출되며, 리스트에 클라이언트 담당 쓰레드 저장
 	private synchronized void addClient(ServerSocketThread thread) {
 		// 리스트에 ServerSocketThread 객체 저장
+		
+		
+		
 		list.add(thread);
 		System.out.println("Client 1명 입장. 총 " + list.size() + "명");
 	}		

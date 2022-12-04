@@ -79,10 +79,10 @@ public class User extends UserData {
 		setPw(_pw);
 	}
 	
-	private void setId(String _id) { id = _id; }
-	private void setPw(String _pw) { pw = _pw; }
+	public void setId(String _id) { id = _id; }
+	public void setPw(String _pw) { pw = _pw; }
 	
-	private void set_start_date() {
+	public void set_start_date() {
 //		LocalDate now = LocalDate.now();
 //		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 //		start_date = now.format(formatter);

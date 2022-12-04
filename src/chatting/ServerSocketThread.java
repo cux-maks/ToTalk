@@ -18,11 +18,13 @@ public class ServerSocketThread extends Thread {
 	String threadName;
 	
 	public ServerSocketThread(ChatServer server, Socket socket) {
+		
 		this.server = server;
 		this.socket = socket;
 		threadName = super.getName();	// Thread 이름을 얻어옴
 		System.out.println(socket.getInetAddress() + "님이 입장하였습니다.");	// IP주소 얻어옴
 		System.out.println("Thread Name : " + threadName);
+		
 	}
 	// 클라이언트로 메시지 출력
 	public void sendMessage(String str) {
@@ -43,8 +45,10 @@ public class ServerSocketThread extends Thread {
 			server.broadCasting("[" + name + "]님이 입장하셨습니다.");
 			
 			while(true) {
+				
 				String str_in = in.readLine();
 				server.broadCasting("[" + name + "] " + str_in);
+				
 			}
 		} catch (IOException e) {
 			System.out.println(threadName + " 퇴장했습니다.");
