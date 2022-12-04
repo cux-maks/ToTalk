@@ -38,12 +38,13 @@ public class ServerSocketThread extends Thread {
 			
 //			sendMessage("님이 입장하셨습니다.");
 			
-//			name = in.readLine();
-			server.broadCasting("[" + main.LoginScreen.getId() + "]님이 입장하셨습니다.");
+			name = in.readLine();
+//			server.broadCasting("[" + main.LoginScreen.getId() + "]님이 입장하셨습니다.");
+			server.broadCasting("[" + name + "]님이 입장하셨습니다.");
 			
 			while(true) {
 				String str_in = in.readLine();
-				server.broadCasting("[" + main.LoginScreen.getId() + "] " + str_in);
+				server.broadCasting("[" + name + "] " + str_in);
 			}
 		} catch (IOException e) {
 			System.out.println(threadName + " 퇴장했습니다.");
