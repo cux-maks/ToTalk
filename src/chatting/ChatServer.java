@@ -48,8 +48,6 @@ public class ChatServer {
 	private synchronized void addClient(ServerSocketThread thread) {
 		// 리스트에 ServerSocketThread 객체 저장
 		
-		
-		
 		list.add(thread);
 		System.out.println("Client 1명 입장. 총 " + list.size() + "명");
 	}		
