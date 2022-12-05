@@ -54,7 +54,11 @@ public class WordChainGame {
             
             boolean counting = play[i].checkSuccess(lastChar);
             
-            if(counting==false) {
+            if(play[i].word.length() == 1) {
+            	System.out.println("두 글자 이상 입력해야합니다.");
+            	System.out.println(play[i].name + "님이 졌습니다.");
+            	break;
+            }else if(counting==false) {
             	System.out.println("첫 글자가 다릅니다.");
                 System.out.println(play[i].name + "님이 졌습니다.");
                 break;

@@ -8,6 +8,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import main.LoginScreen;
+import game.WordChainGame;
 
 public class ServerSocketThread extends Thread {
 	Socket socket;
@@ -48,6 +49,12 @@ public class ServerSocketThread extends Thread {
 				
 				String str_in = in.readLine();
 				server.broadCasting("[" + name + "] " + str_in);
+				
+				if (str_in.equals("끝말잇기 게임을 시작합니다.")) {
+		          String name1 = new String("유저 1");
+		          String name2 = new String("유저 2");
+		          WordChainGame gameStart = new WordChainGame(name1, name2);
+				}
 				
 			}
 		} catch (IOException e) {
