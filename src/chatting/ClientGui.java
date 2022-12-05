@@ -31,6 +31,8 @@ import javax.swing.ImageIcon;
 
 import com.sun.tools.javac.Main;
 
+import game.WordChainGame;
+
 public class ClientGui extends JFrame implements ActionListener, Runnable{
 // 클라이언트 화면용
 Container container = getContentPane();
@@ -87,14 +89,32 @@ public ClientGui(String ip, int port) {
     //JMenuItem mntmLogout = new JMenuItem("Logout");
     //mnNewMenu.add(mntmLogout);
     //getContentPane().setLayout(null);
-	   
+    
     JMenu mnGame = new JMenu("Game");
     menuBar.add(mnGame);
     mnGame.setFont(font2);
     //mnGame.setBackground(color2);
     
+    class MenuActionListener implements ActionListener {
+       public void actionPerformed(ActionEvent e) {
+          String name1 = new String("유저 1");
+          String name2 = new String("유저 2");
+          WordChainGame gameStart = new WordChainGame(name1, name2);
+          
+       }
+    }
+    
     JMenuItem mnWordChainGame = new JMenuItem("끝말잇기");
     mnGame.add(mnWordChainGame); 
+    mnWordChainGame.addActionListener(new MenuActionListener());
+	   
+//    JMenu mnGame = new JMenu("Game");
+//    menuBar.add(mnGame);
+//    mnGame.setFont(font2);
+//    //mnGame.setBackground(color2);
+//    
+//    JMenuItem mnWordChainGame = new JMenuItem("끝말잇기");
+//    mnGame.add(mnWordChainGame); 
     
 //    mnWordChainGame.addActionListener(new MenuActionListener());
 //	

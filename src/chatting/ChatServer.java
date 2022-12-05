@@ -20,7 +20,7 @@ public class ChatServer {
 	String my_id = new String("xmaaks");
 	String my_pw = new String("whqudgk");
 	User new_User = new User(_Name);
-//	new_User.register(my_id, my_pw);
+	
 	
 	public ChatServer() {
 		list = new ArrayList<Thread>();
