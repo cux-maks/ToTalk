@@ -1,7 +1,8 @@
-package game;
+package chatting;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.List;
 
 class Player{
  
@@ -23,9 +24,9 @@ class Player{
 
 public class WordChainGame {
 	
-	public WordChainGame(String name_user1, String name_user2) {
+	public WordChainGame(List<ServerSocketThread> list) {
 		String startword = "아버지";
-        ArrayList word_list = new ArrayList();
+        ArrayList<String> word_list = new ArrayList();
         int word_cnt = 0;
         
         System.out.println("끝말잇기 게임을 시작합니다...");
@@ -35,9 +36,9 @@ public class WordChainGame {
         Player[] play = new Player[playernum];
         
         for(int i = 0; i<playernum; i++) play[i] = new Player();
-      
-        play[0].name = name_user1;
-        play[1].name = name_user2;
+        for(int i = 0; i<playernum; i++) play[i].name = list.get(i).getName();
+//        play[0].name = name_user1;
+//        play[1].name = name_user2;
         
         System.out.printf("시작하는 단어는 %s입니다.", startword);
  

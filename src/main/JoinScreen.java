@@ -7,8 +7,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import main.main_Data;
 import java.awt.Toolkit;
 
 import javax.swing.*;
@@ -17,6 +15,17 @@ import User_Management.User;
 
 @SuppressWarnings("serial")
 public class JoinScreen extends JFrame{
+	
+	Font font1 = new Font("메이플스토리", Font.BOLD,30);//대제목
+	Font font2 = new Font("빙그레 메로나체", Font.BOLD,15);//중제목
+	Font font3 = new Font("빙그레 메로나체", Font.PLAIN,15);//본문
+	Font font4 = new Font("S-Core Dream 1 가늘게", Font.PLAIN,10);//캡션
+
+	Color color1 = new Color(0XD1CEFF);//보라색
+	Color color2 = new Color(0X71A6F0 );//진한 파랑
+	Color color3 = new Color(0X75D6E0);//연한 파랑
+	Color color4 = new Color(0X74F7C1);//민트
+	Color color5 = new Color(0X7EDE85);//초록
 
 	String choice = null;
 	
@@ -25,13 +34,20 @@ public class JoinScreen extends JFrame{
 		setIconImage(Toolkit.getDefaultToolkit().getImage(JoinScreen.class.getResource("ToTalk.png")));
 		
 		setTitle("회원관리 화면");
-		JPanel p = new JPanel();
+		JPanel title = new JPanel();
+
+		// title 컨테이너에 들어갈 컴포넌트
+		JLabel newUse = new JLabel("회원가입", JLabel.CENTER);
 		
-		JLabel title = new JLabel("회원가입", JLabel.CENTER);
-		title.setForeground(Color.BLACK);
-		p.setBackground(new Color(209,206,255));
-		title.setFont(new Font("휴먼편지체", Font.BOLD, 30));
-		p.add(title);
+		newUse.setForeground(Color.BLACK);
+		title.setBackground(color1);
+		//newUse.setBackground(color1);
+		newUse.setFont(font1);
+		
+		//title.setBackground(color1);
+		title.add(newUse);
+		
+		
 		
 		JButton join = new JButton("회원가입");
 		JButton cancel = new JButton("취소");
@@ -44,6 +60,9 @@ public class JoinScreen extends JFrame{
 		JRadioButton client = new JRadioButton("교수");
 		JRadioButton manager = new JRadioButton("학생");
 		JRadioButton etc = new JRadioButton("기타");
+		client.setFont(font2);
+		manager.setFont(font2);
+		etc.setFont(font2);
 		
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(client); bg.add(manager); bg.add(etc);
@@ -57,25 +76,34 @@ public class JoinScreen extends JFrame{
 		// form panel
 		JPanel idPanel = new JPanel();
 		idPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		idPanel.add(new JLabel("아이디 : "));
+		JLabel idP = new JLabel("아이디 : ",JLabel.CENTER);
+		idP.setFont(font2);
+		idPanel.add(idP);
 		idPanel.add(id);
+		idPanel.setFont(font2);
 		
 		
 		JPanel pwdPanel = new JPanel();
 		pwdPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		pwdPanel.add(new JLabel("비밀번호 : "));
+		JLabel pwP = new JLabel("비밀번호 : ",JLabel.CENTER);
+		pwP.setFont(font2);
+		pwdPanel.add(pwP);
 		pwdPanel.add(pwd);
 		
 		
 		JPanel namePanel = new JPanel();
 		namePanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		namePanel.add(new JLabel("이    름 : "));
+		JLabel nameP = new JLabel("이    름 : ",JLabel.CENTER);
+		nameP.setFont(font2);
+		namePanel.add(nameP);
 		namePanel.add(name);
 		
 		
 		JPanel phonePanel = new JPanel();
 		phonePanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		phonePanel.add(new JLabel("연 락 처 : "));
+		JLabel phoneP = new JLabel("연 락 처 : ",JLabel.CENTER);
+		phoneP.setFont(font2);
+		phonePanel.add(phoneP);
 		phonePanel.add(phone);
 		
 		
@@ -94,16 +122,21 @@ public class JoinScreen extends JFrame{
 		
 		// button panel
 		JPanel panel = new JPanel();
+		panel.setLayout(new FlowLayout());
+		//panel.setBackground(color1);//젤 아래 버튼 색상
 		panel.add(join);
 		panel.add(cancel);
+
+		setLayout(new BorderLayout());
 		
-		add(p, BorderLayout.NORTH);
 		add(title, BorderLayout.NORTH);
 		add(contentPanel, BorderLayout.CENTER);
 		add(panel, BorderLayout.SOUTH);
 		
 		
 		setBounds(200, 200, 250, 300);
+
+		setResizable(false);  // 화면 크기 고정하는 작업
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -134,10 +167,12 @@ public class JoinScreen extends JFrame{
 					", 이 름 : "+myName+", 연락처 : "+myPhone+
 					", 가입유형 : "+choice);
 				
+				
 				User new_user = new User(myName);
 				new_user.register(myId, myPwd);
 				main_Data a = new main_Data();
 				a.addUser(new_user);
+				
 			}
 		});
 		

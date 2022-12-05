@@ -9,18 +9,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-
 import java.awt.Toolkit;
-
 import javax.swing.*;
-
-import chatting.ChatServer;
 import chatting.ClientGui;
 
-import main.main_Data;
+
+
 
 @SuppressWarnings("serial")
 public class LoginScreen extends JFrame {
+	
+	Font font1 = new Font("메이플스토리", Font.BOLD,30);//대제목
+	Font font2 = new Font("빙그레 메로나체", Font.BOLD,15);//중제목
+	Font font3 = new Font("빙그레 메로나체", Font.PLAIN,15);//본문
+	Font font4 = new Font("S-Core Dream 1 가늘게", Font.PLAIN,10);//캡션
+
+	Color color1 = new Color(0XD1CEFF);//보라색
+	Color color2 = new Color(0X71A6F0 );//진한 파랑
+	Color color3 = new Color(0X75D6E0);//연한 파랑
+	Color color4 = new Color(0X74F7C1);//민트
+	Color color5 = new Color(0X7EDE85);//초록
+
 
 	static String myId = new String("");
 	static String myPwd = new String("");
@@ -34,42 +43,46 @@ public class LoginScreen extends JFrame {
 		JPanel title = new JPanel();
 		
 		// title 컨테이너에 들어갈 컴포넌트를 만들어 보자.
-		JLabel login = new JLabel("로그인 화면");
+		JLabel login = new JLabel("로그인 화면", JLabel.CENTER);
 
 		// Color color = new Color(5, 0, 153)
 
 		login.setForeground(Color.BLACK);
-		title.setBackground(new Color(209,206,255));
-		
-		// Font font = new Font("휴먼편지체", Font.BOLD, 25);
-		
-		login.setFont(new Font("휴먼편지체", Font.BOLD, 25));
+		title.setBackground(color1);
+	
+		login.setFont(font1);
 		
 		// 컴포넌트를 title 컨테이너에 올려 주자.
 		title.add(login);
 		
 		
+		
+		
 		JPanel jp1 = new JPanel();
-		jp1.setLayout(new GridLayout(4,3));
+		GridLayout Grid=new GridLayout(4,3);
+		jp1.setLayout(Grid);
+		
 		
 		JPanel idPanel = 
-			new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JLabel jlb1 = new JLabel("아이디 : ", JLabel.CENTER);
-		
+			new JPanel(new FlowLayout(FlowLayout.CENTER));
+		//idPanel.setSize(50,10);
+		JLabel jlb1 = new JLabel("아이디  ", JLabel.CENTER);
+		jlb1.setFont(font2);
 		idPanel.add(jlb1);
 		
 		JPanel idPanel2 = 
 				new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JTextField jtf1 = new JTextField(15);
-			
 		idPanel2.add(jtf1);
+		
 		
 		jp1.add(idPanel); jp1.add(idPanel2);
 		
 		
 		JPanel pwdPanel = 
-			new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JLabel jlb2 = new JLabel("비밀번호 : ", JLabel.CENTER);
+			new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JLabel jlb2 = new JLabel("비밀번호  ", JLabel.CENTER);
+		jlb2.setFont(font2);
 		
 		JPanel pwdPanel2 = 
 				new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -77,9 +90,10 @@ public class LoginScreen extends JFrame {
 		
 		
 		JPanel IPPanel1 = 
-				new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JLabel IP1 = new JLabel("접속 IP : ", JLabel.CENTER);
-			
+				new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JLabel IP1 = new JLabel("접속 IP  ", JLabel.CENTER);
+		IP1.setFont(font2);
+		
 		IPPanel1.add(IP1);
 		JPanel IPPanel2 = 
 				new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -101,6 +115,7 @@ public class LoginScreen extends JFrame {
 				new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JButton join = new JButton("회원가입");
 		
+		
 		loginPanel.add(jLogin); joinPanel.add(join);
 		
 		jp1.add(loginPanel); jp1.add(joinPanel);
@@ -115,7 +130,7 @@ public class LoginScreen extends JFrame {
 		add(title, BorderLayout.NORTH);
 		add(jp2, BorderLayout.CENTER);
 		
-		setBounds(200, 200, 350, 300);
+		setBounds(200, 200, 400, 250);
 		
 		setResizable(false);  // 화면 크기 고정하는 작업
 		

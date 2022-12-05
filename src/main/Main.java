@@ -1,9 +1,6 @@
 package main;
 
 import chatting.ChatServer;
-import java.util.ArrayList;
-
-import User_Management.User;
 
 public class Main {
 	

@@ -23,15 +23,10 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
-
-import com.sun.tools.javac.Main;
-
-import game.WordChainGame;
 
 public class ClientGui extends JFrame implements ActionListener, Runnable{
 // 클라이언트 화면용
@@ -98,6 +93,7 @@ public ClientGui(String ip, int port) {
     class MenuActionListener implements ActionListener {
        public void actionPerformed(ActionEvent e) {
     	   out.println("끝말잇기 게임을 시작합니다.");
+    	   
 //          String name1 = new String("유저 1");
 //          String name2 = new String("유저 2");
 //          WordChainGame gameStart = new WordChainGame(name1, name2);
