@@ -27,6 +27,8 @@ public class ChatServer {
 		System.out.println("서버가 시작되었습니다.");
 	}
 	
+	public int num_of_users() { return list.size(); }
+	
 	public void giveAndTake() {
 		try {
 			serverSocket = new ServerSocket(5420);		// 소켓 접속 대기

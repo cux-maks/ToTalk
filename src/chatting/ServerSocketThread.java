@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 import main.LoginScreen;
 import game.WordChainGame;
+import java.util.List;
 
 public class ServerSocketThread extends Thread {
 	Socket socket;
@@ -20,6 +21,7 @@ public class ServerSocketThread extends Thread {
 	PrintWriter out;		// 출력 담당 클래스
 	String name;
 	String threadName;
+	List<String> names;
 	
 	public ServerSocketThread(ChatServer server, Socket socket) {
 		
@@ -37,16 +39,19 @@ public class ServerSocketThread extends Thread {
 	// 쓰레드
 	@Override
 	public void run() {
+
 		try {
+			
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			// true : autoFlush 설정
 			out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
 			
 //			sendMessage("님이 입장하셨습니다.");
-			
+		
 			name = in.readLine();
 //			server.broadCasting("[" + main.LoginScreen.getId() + "]님이 입장하셨습니다.");
 			server.broadCasting("[" + name + "]님이 입장하셨습니다.");
+			names.add(name);
 			
 			while(true) {
 				
@@ -57,7 +62,7 @@ public class ServerSocketThread extends Thread {
 					server.broadCasting("시작 단어는 아버지 입니다.");
 					
 					String startword = new String("아버지");
-		          String name[] = {"유저 1", "유저 2"};
+		          int user_num = names.size();
 		          
 		          ArrayList word_list = new ArrayList();
 		          int word_cnt = 0;
@@ -76,33 +81,35 @@ public class ServerSocketThread extends Thread {
 		              int lastIndex = startword.length() - 1;
 		              char lastChar = startword.charAt(lastIndex);
 		              
-		              server.broadCasting(name[i] + "차례 입니다.");
-		              System.out.println(name[i] + ">> ");
-		              
+		              server.broadCasting(names.get(i) + "차례 입니다.");
+		              System.out.println(names.get(i) + ">> ");
 		              
 //		              String word = scan.next();
 		              
 		              String[] word_buf = in.readLine().split("] ");
-		              String word = word_buf[1];
+		              System.out.println(word_buf[0]);
+		              String word = word_buf[0];
+		              server.broadCasting("[" + names.get(i) + "] " + word);
+		              System.out.println(word);
 		              
 		              boolean counting = (lastChar == word.charAt(0));
 		              
 		              if(word.length() == 1) {
 		            	  server.broadCasting("두 글자 이상 입력해야합니다.");
-		            	  server.broadCasting(name[i] + "님이 졌습니다.");
+		            	  server.broadCasting(names.get(i) + "님이 졌습니다.");
 //		              	System.out.println("두 글자 이상 입력해야합니다.");
 //		              	System.out.println(name[i] + "님이 졌습니다.");
 		              	break;
 		              }else if(counting==false) {
 		            	  server.broadCasting("첫 글자가 다릅니다.");
-		            	  server.broadCasting(name[i] + "님이 졌습니다.");
+		            	  server.broadCasting(names.get(i) + "님이 졌습니다.");
 //		              	System.out.println("첫 글자가 다릅니다.");
 //		                  System.out.println(name[i] + "님이 졌습니다.");
 		                  break;
 		              }else {
 		              	if (word_list.contains(word)) {
 		              		server.broadCasting("이미 사용된 단어입니다.");
-			            	  server.broadCasting(name[i] + "님이 졌습니다.");
+			            	  server.broadCasting(names.get(i) + "님이 졌습니다.");
 //		              		System.out.println("이미 사용된 단어입니다.");
 //		              		System.out.println(name[i] + "님이 졌습니다.");
 		              		break;
