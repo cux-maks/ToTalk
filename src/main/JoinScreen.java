@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import main.main_Data;
 import java.awt.Toolkit;
 
 import javax.swing.*;
@@ -51,6 +53,12 @@ public class JoinScreen extends JFrame{
 		
 		JButton join = new JButton("회원가입");
 		JButton cancel = new JButton("취소");
+		join.setBackground(Color.LIGHT_GRAY);
+		join.setBorderPainted(false);//테두리 제거
+		join.setFont(font2);
+		cancel.setBackground(Color.LIGHT_GRAY);
+		cancel.setBorderPainted(false);//테두리 제거
+		cancel.setFont(font2);
 		
 		JTextField id = new JTextField(10);
 		JPasswordField pwd = new JPasswordField(10);
@@ -134,7 +142,7 @@ public class JoinScreen extends JFrame{
 		add(panel, BorderLayout.SOUTH);
 		
 		
-		setBounds(200, 200, 250, 300);
+		setBounds(200, 200, 300, 315);
 
 		setResizable(false);  // 화면 크기 고정하는 작업
 		

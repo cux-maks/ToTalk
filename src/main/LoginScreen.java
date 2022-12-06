@@ -9,9 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
 import java.awt.Toolkit;
+
 import javax.swing.*;
+
+import chatting.ChatServer;
 import chatting.ClientGui;
+
+import main.main_Data;
 
 
 
@@ -29,6 +35,7 @@ public class LoginScreen extends JFrame {
 	Color color3 = new Color(0X75D6E0);//연한 파랑
 	Color color4 = new Color(0X74F7C1);//민트
 	Color color5 = new Color(0X7EDE85);//초록
+	Color color6 = new Color(0XAAC9F7);//new!
 
 
 	static String myId = new String("");
@@ -43,7 +50,7 @@ public class LoginScreen extends JFrame {
 		JPanel title = new JPanel();
 		
 		// title 컨테이너에 들어갈 컴포넌트를 만들어 보자.
-		JLabel login = new JLabel("로그인 화면", JLabel.CENTER);
+		JLabel login = new JLabel("로그인", JLabel.CENTER);
 
 		// Color color = new Color(5, 0, 153)
 
@@ -61,7 +68,7 @@ public class LoginScreen extends JFrame {
 		JPanel jp1 = new JPanel();
 		GridLayout Grid=new GridLayout(4,3);
 		jp1.setLayout(Grid);
-		
+		jp1.setOpaque(false);
 		
 		JPanel idPanel = 
 			new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -69,11 +76,13 @@ public class LoginScreen extends JFrame {
 		JLabel jlb1 = new JLabel("아이디  ", JLabel.CENTER);
 		jlb1.setFont(font2);
 		idPanel.add(jlb1);
+		idPanel.setOpaque(false);
 		
 		JPanel idPanel2 = 
 				new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JTextField jtf1 = new JTextField(15);
 		idPanel2.add(jtf1);
+		idPanel2.setOpaque(false);
 		
 		
 		jp1.add(idPanel); jp1.add(idPanel2);
@@ -99,6 +108,7 @@ public class LoginScreen extends JFrame {
 				new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JTextField IP2 = new JTextField(15);
 		
+		
 		IPPanel2.add(IP2);
 		
 		pwdPanel.add(jlb2); pwdPanel2.add(jtf2);
@@ -110,10 +120,18 @@ public class LoginScreen extends JFrame {
 		JPanel loginPanel = 
 				new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JButton jLogin = new JButton("로그인");
+		jLogin.setBackground(Color.LIGHT_GRAY);//버튼 색
+		jLogin.setFont(font2);
+		//jLogin.setForeground(Color.white);//글자색
+		jLogin.setBorderPainted(false);//테두리 제거
 		
 		JPanel joinPanel = 
 				new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JButton join = new JButton("회원가입");
+		join.setBackground(Color.LIGHT_GRAY);//버튼 색
+		join.setFont(font2);
+		//join.setForeground(Color.white);//글자색
+		join.setBorderPainted(false);//테두리 제거
 		
 		
 		loginPanel.add(jLogin); joinPanel.add(join);
