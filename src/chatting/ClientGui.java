@@ -32,7 +32,9 @@ public class ClientGui extends JFrame implements ActionListener, Runnable{
 // 클라이언트 화면용
 Container container = getContentPane();
 
-Image BImg = new ImageIcon("./src/chatting/ToTalk_BackGround.png").getImage();
+Image BImg = new ImageIcon("./src/chatting/ToTalk_BackGround2.png").getImage();
+Image BImg2 = new ImageIcon("./src/chatting/ToTalk_BackGround3.png").getImage();
+
 
 JTextArea textArea = new JTextArea(){
     { setOpaque( false ) ; }
@@ -178,6 +180,7 @@ public void run() {
          textArea.setFont(font3);
          //textArea.setForeground(color4);//글자색변경
          textArea.setBackground(color1);
+         textArea.setCaretPosition(textArea.getDocument().getLength());  // 맨아래로 자동스크롤
       } catch (IOException e) {
          e.printStackTrace();
       }
